@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FixMate — Handyman Services App Prototype</title>
+<style>
+:root{--navy:#13243a;--blue:#2864e8;--cyan:#eaf2ff;--ink:#182335;--muted:#758197;--line:#e8edf4;--bg:#f4f7fb;--green:#18a878}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 5%,#e1eaff,transparent 34%),#eef2f8;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial;color:var(--ink);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px}
+.stage{display:flex;align-items:center;gap:42px;max-width:1050px;width:100%}.intro{max-width:430px}.eyebrow{color:var(--blue);font-weight:800;letter-spacing:2px;font-size:11px;text-transform:uppercase}.intro h1{font-size:42px;line-height:1.08;margin:14px 0;color:var(--navy);letter-spacing:-1.5px}.intro p{color:#657187;line-height:1.7;font-size:15px}.feature{display:flex;gap:12px;align-items:center;margin:17px 0;color:#43516a;font-size:14px}.dot{width:30px;height:30px;border-radius:10px;background:white;display:grid;place-items:center;box-shadow:0 5px 15px #263c6512}
+.phone{width:390px;height:790px;max-height:92vh;min-height:650px;background:#fff;border:9px solid #152235;border-radius:43px;box-shadow:0 28px 80px #182b4a35;overflow:hidden;position:relative;flex-shrink:0}.notch{position:absolute;z-index:5;top:0;left:50%;transform:translateX(-50%);height:22px;width:116px;background:#152235;border-radius:0 0 15px 15px}.status{height:36px;padding:9px 23px 0;display:flex;justify-content:space-between;font-size:11px;font-weight:800;background:white}.app{height:calc(100% - 36px);overflow:auto;background:#f7f9fc;padding-bottom:76px;scrollbar-width:none}.app::-webkit-scrollbar{display:none}.topbar{padding:13px 19px 16px;background:white;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:9px;font-weight:850;font-size:19px;letter-spacing:-.5px}.logo{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,#2e75ff,#1748bb);color:white;display:grid;place-items:center;font-size:18px}.avatar{width:35px;height:35px;border-radius:50%;background:#e9efff;color:#275bd1;display:grid;place-items:center;font-weight:800}
+.page{display:none;padding:16px 17px 24px}.page.active{display:block}.greeting{font-size:13px;color:var(--muted)}h2{font-size:23px;line-height:1.2;margin:4px 0 15px;letter-spacing:-.6px}.hero{background:linear-gradient(120deg,#173b80,#2868e7);color:white;border-radius:20px;padding:19px;position:relative;overflow:hidden;min-height:157px}.hero:after{content:"🔧";position:absolute;right:14px;bottom:4px;font-size:74px;opacity:.2;transform:rotate(-18deg)}.hero small{opacity:.8;font-weight:700}.hero h3{font-size:21px;line-height:1.18;margin:8px 0;width:70%}.hero p{font-size:11px;opacity:.85;margin:0 0 13px}.whitebtn{border:0;border-radius:10px;padding:10px 13px;background:white;color:#2054bd;font-weight:800;font-size:11px;cursor:pointer}
+.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:20px 0 11px}.sectionhead strong{font-size:15px}.link{font-size:11px;color:var(--blue);font-weight:800;cursor:pointer}.services{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.service{border:1px solid var(--line);background:white;border-radius:15px;padding:12px 4px;text-align:center;cursor:pointer;transition:.2s}.service:hover,.service:focus{border-color:#7fa5ff;transform:translateY(-2px)}.service .emoji{font-size:24px}.service span{display:block;font-size:10px;font-weight:750;margin-top:7px}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:10px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.jobicon{width:43px;height:43px;border-radius:13px;background:#edf3ff;display:grid;place-items:center;font-size:22px}.muted{color:var(--muted);font-size:11px}.jobtitle{font-weight:800;font-size:13px}.pill{background:#eaf8f2;color:#16855f;padding:5px 8px;border-radius:20px;font-size:9px;font-weight:800}.quick{display:flex;gap:8px;margin-top:12px}.quick button,.outline{border:1px solid #dce5f4;background:#fff;color:#315a9e;border-radius:10px;padding:9px 11px;font-size:10px;font-weight:800;cursor:pointer}.primary{border:0;background:var(--blue);color:white;border-radius:12px;padding:12px 15px;font-weight:800;font-size:12px;cursor:pointer;width:100%;box-shadow:0 7px 16px #2864e82b}.primary:active,.whitebtn:active{transform:scale(.98)}
+.field{margin:12px 0}.field label{display:block;font-size:11px;font-weight:800;margin-bottom:6px;color:#43516a}.field input,.field select,.field textarea{width:100%;border:1px solid #e0e7f1;background:white;border-radius:11px;padding:12px;font:inherit;font-size:12px;outline:none}.field textarea{height:76px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:#6e98ff}.choicegrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.choice{background:white;border:1px solid var(--line);border-radius:12px;padding:12px;text-align:left;font-size:11px;font-weight:800;cursor:pointer}.choice.selected{border-color:var(--blue);background:#f0f5ff;color:#2054bd}.nav{position:absolute;bottom:0;left:0;right:0;height:68px;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;padding-bottom:4px}.nav button{border:0;background:none;color:#9aa5b5;font-size:9px;font-weight:750;display:flex;flex-direction:column;gap:4px;align-items:center;cursor:pointer}.nav button b{font-size:19px;font-weight:500}.nav button.active{color:var(--blue)}.toast{position:absolute;bottom:82px;left:18px;right:18px;background:#142943;color:white;border-radius:12px;padding:12px 14px;font-size:11px;box-shadow:0 8px 25px #0c203d35;display:none;z-index:8}.toast.show{display:block;animation:fade 2.6s forwards}@keyframes fade{0%,75%{opacity:1}100%{opacity:0}}
+.back{border:0;background:none;color:var(--blue);font-weight:800;font-size:12px;padding:0;margin-bottom:12px;cursor:pointer}.price{font-size:12px;font-weight:850;color:#1b56c8}.empty{text-align:center;padding:30px 10px;color:var(--muted);font-size:12px}.profileline{padding:14px 0;border-bottom:1px solid var(--line);font-size:12px;display:flex;justify-content:space-between}.profileline b{color:#26364d}
+@media(max-width:800px){body{padding:10px}.stage{justify-content:center}.intro{display:none}.phone{width:min(390px,100%);height:min(790px,94vh);min-height:620px}}
+</style>
+</head>
+<body>
+<div class="stage">
+ <div class="intro">
+  <div class="eyebrow">Interactive app concept</div>
+  <h1>Home repairs, made simple.</h1>
+  <p>A mobile-first handyman service experience where customers can explore maintenance services, request a quote, schedule a visit, and keep track of every job.</p>
+  <div class="feature"><span class="dot">✓</span> Clickable service categories and booking flow</div>
+  <div class="feature"><span class="dot">✓</span> Service requests, job tracking and customer profile</div>
+  <div class="feature"><span class="dot">✓</span> Designed as a phone-screen app prototype</div>
+  <p style="font-size:12px;margin-top:28px">Concept name: <b>FixMate</b> · Demo content and sample requests</p>
+ </div>
+ <div class="phone">
+  <div class="notch"></div><div class="status"><span>9:41</span><span>●●●  ▰</span></div>
+  <div class="app">
+   <div class="topbar"><div class="brand"><div class="logo">⌂</div> FixMate</div><div class="avatar">J</div></div>
+   <section class="page active" id="home">
+    <div class="greeting">Good morning, Jose 👋</div><h2>What can we fix<br>for you today?</h2>
+    <div class="hero"><small>YOUR HOME, IN GOOD HANDS</small><h3>Reliable help is just a tap away.</h3><p>Book trusted help for the jobs around your home.</p><button class="whitebtn" onclick="go('book')">Request a service →</button></div>
+    <div class="sectionhead"><strong>Explore services</strong><span class="link" onclick="go('services')">See all</span></div>
+    <div class="services">
+     <button class="service" onclick="chooseService('Plumbing')"><div class="emoji">🚿</div><span>Plumbing</span></button>
+     <button class="service" onclick="chooseService('Electrical')"><div class="emoji">💡</div><span>Electrical</span></button>
+     <button class="service" onclick="chooseService('Painting')"><div class="emoji">🖌️</div><span>Painting</span></button>
+     <button class="service" onclick="chooseService('Repairs')"><div class="emoji">🛠️</div><span>Repairs</span></button>
+    </div>
+    <div class="sectionhead"><strong>Recent activity</strong><span class="link" onclick="go('jobs')">View all</span></div>
+    <div class="card"><div class="row"><div class="row" style="justify-content:flex-start"><div class="jobicon">🚰</div><div><div class="jobtitle">Kitchen faucet repair</div><div class="muted">Request #FM-1024 · Nov 10</div></div></div><span class="pill">In progress</span></div><div class="quick"><button onclick="go('jobs')">Track request</button><button onclick="toast('Your service details are ready to view.')">Details</button></div></div>
+   </section>
+   <section class="page" id="services">
+    <button class="back" onclick="go('home')">← Back</button><h2>Our services</h2><p class="muted">Choose the type of help you need. You can add details in the next step.</p>
+    <div class="card" onclick="chooseService('Plumbing')" style="cursor:pointer"><div class="row"><div class="row" style="justify-content:flex-start"><div class="jobicon">🚿</div><div><div class="jobtitle">Plumbing</div><div class="muted">Leaks, faucets, drains and fixtures</div></div></div><span>›</span></div></div>
+    <div class="card" onclick="chooseService('Electrical')" style="cursor:pointer"><div class="row"><div class="row" style="justify-content:flex-start"><div class="jobicon">💡</div><div><div class="jobtitle">Electrical</div><div class="muted">Lighting, outlets and small fixes</div></div></div><span>›</span></div></div>
+    <div class="card" onclick="chooseService('Painting')" style="cursor:pointer"><div class="row"><div class="row" style="justify-content:flex-start"><div class="jobicon">🖌️</div><div><div class="jobtitle">Painting</div><div class="muted">Touch-ups, rooms and surfaces</div></div></div><span>›</span></div></div>
+    <div class="card" onclick="chooseService('Repairs')" style="cursor:pointer"><div class="row"><div class="row" style="justify-content:flex-start"><div class="jobicon">🛠️</div><div><div class="jobtitle">General repairs</div><div class="muted">Doors, shelves, drywall and more</div></div></div><span>›</span></div></div>
+    <div class="card" onclick="chooseService('Home maintenance')" style="cursor:pointer"><div class="row"><div class="row" style="justify-content:flex-start"><div class="jobicon">🏠</div><div><div class="jobtitle">Home maintenance</div><div class="muted">Routine upkeep and inspections</div></div></div><span>›</span></div></div>
+    <button class="primary" onclick="go('book')">Request a service</button>
+   </section>
+   <section class="page" id="book">
+    <button class="back" onclick="go('services')">← Services</button><h2>Request a service</h2><p class="muted">Tell us a little about the job. We'll follow up to confirm the details.</p>
+    <div class="field"><label>Service type</label><select id="serviceType"><option>Plumbing</option><option>Electrical</option><option>Painting</option><option>General repairs</option><option>Home maintenance</option><option>Other</option></select></div>
+    <div class="field"><label>What needs attention?</label><textarea id="details" placeholder="Describe the issue or work you need..."></textarea></div>
+    <div class="field"><label>Preferred date</label><input id="date" type="date"></div>
+    <div class="field"><label>Service address</label><input id="address" placeholder="Street address, city, ZIP"></div>
+    <div class="field"><label>How should we contact you?</label><input id="contact" placeholder="Phone number or email"></div>
+    <button class="primary" onclick="submitRequest()">Send service request</button>
+    <p class="muted" style="text-align:center;margin-top:10px">Demo only — no information is sent.</p>
+   </section>
+   <section class="page" id="jobs">
+    <h2>My requests</h2><p class="muted">Keep an eye on your service requests and updates.</p>
+    <div class="card"><div class="row"><div class="row" style="justify-content:flex-start"><div class="jobicon">🚰</div><div><div class="jobtitle">Kitchen faucet repair</div><div class="muted">FM-1024 · Nov 10, 2026</div></div></div><span class="pill">In progress</span></div><div style="margin:15px 0 5px;height:5px;border-radius:8px;background:#edf1f7"><div style="width:65%;height:5px;border-radius:8px;background:#2864e8"></div></div><div class="row muted"><span>Request received</span><span>Technician assigned</span></div><div class="quick"><button onclick="toast('A technician update will appear here.')">View updates</button><button onclick="toast('Support: hello@fixmate.demo')">Get help</button></div></div>
+    <div id="newJobs"></div>
+    <div class="card"><div class="row"><strong style="font-size:12px">Need another job done?</strong><span>🧰</span></div><p class="muted">Send a new request whenever you need a hand.</p><button class="primary" onclick="go('book')">Book a service</button></div>
+   </section>
+   <section class="page" id="profile">
+    <h2>My profile</h2><div class="card"><div class="row"><div class="row" style="justify-content:flex-start"><div class="avatar" style="width:48px;height:48px;font-size:18px">J</div><div><div class="jobtitle" style="font-size:15px">Jose Herrera</div><div class="muted">Customer account</div></div></div><span>✎</span></div></div>
+    <div class="card"><div class="profileline"><span>Personal information</span><b>›</b></div><div class="profileline"><span>Saved addresses</span><b>›</b></div><div class="profileline"><span>Notifications</span><b>›</b></div><div class="profileline"><span>Help & support</span><b>›</b></div><div class="profileline"><span>Privacy & terms</span><b>›</b></div></div>
+    <button class="primary" onclick="toast('You are already viewing the demo account.')">Account settings</button>
+   </section>
+  </div>
+  <div class="toast" id="toast"></div>
+  <nav class="nav">
+   <button class="active" data-page="home" onclick="go('home')"><b>⌂</b>Home</button>
+   <button data-page="services" onclick="go('services')"><b>▦</b>Services</button>
+   <button data-page="jobs" onclick="go('jobs')"><b>▤</b>My jobs</button>
+   <button data-page="profile" onclick="go('profile')"><b>☺</b>Profile</button>
+  </nav>
+ </div>
+</div>
+<script>
+function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));document.querySelector('.app').scrollTo({top:0,behavior:'smooth'});}
+function chooseService(s){document.getElementById('serviceType').value=s==='Repairs'?'General repairs':s;go('book');}
+function toast(msg){let t=document.getElementById('toast');t.textContent=msg;t.classList.remove('show');void t.offsetWidth;t.classList.add('show');}
+function submitRequest(){let s=document.getElementById('serviceType').value,d=document.getElementById('details').value.trim(),a=document.getElementById('address').value.trim(),c=document.getElementById('contact').value.trim();if(!d||!a||!c){toast('Please add the job details, address and contact information.');return;}let card=document.createElement('div');card.className='card';card.innerHTML='<div class="row"><div class="row" style="justify-content:flex-start"><div class="jobicon">🧰</div><div><div class="jobtitle"></div><div class="muted">New demo request · Just now</div></div></div><span class="pill">Received</span></div>';card.querySelector('.jobtitle').textContent=s;document.getElementById('newJobs').prepend(card);document.getElementById('details').value='';toast('Your demo request has been added to My requests.');go('jobs');}
+</script>
+</body></html>
