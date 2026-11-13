@@ -1,93 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FixMate — Handyman Services App Prototype</title>
-<style>
-:root{--navy:#13243a;--blue:#2864e8;--cyan:#eaf2ff;--ink:#182335;--muted:#758197;--line:#e8edf4;--bg:#f4f7fb;--green:#18a878}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 5%,#e1eaff,transparent 34%),#eef2f8;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial;color:var(--ink);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px}
-.stage{display:flex;align-items:center;gap:42px;max-width:1050px;width:100%}.intro{max-width:430px}.eyebrow{color:var(--blue);font-weight:800;letter-spacing:2px;font-size:11px;text-transform:uppercase}.intro h1{font-size:42px;line-height:1.08;margin:14px 0;color:var(--navy);letter-spacing:-1.5px}.intro p{color:#657187;line-height:1.7;font-size:15px}.feature{display:flex;gap:12px;align-items:center;margin:17px 0;color:#43516a;font-size:14px}.dot{width:30px;height:30px;border-radius:10px;background:white;display:grid;place-items:center;box-shadow:0 5px 15px #263c6512}
-.phone{width:390px;height:790px;max-height:92vh;min-height:650px;background:#fff;border:9px solid #152235;border-radius:43px;box-shadow:0 28px 80px #182b4a35;overflow:hidden;position:relative;flex-shrink:0}.notch{position:absolute;z-index:5;top:0;left:50%;transform:translateX(-50%);height:22px;width:116px;background:#152235;border-radius:0 0 15px 15px}.status{height:36px;padding:9px 23px 0;display:flex;justify-content:space-between;font-size:11px;font-weight:800;background:white}.app{height:calc(100% - 36px);overflow:auto;background:#f7f9fc;padding-bottom:76px;scrollbar-width:none}.app::-webkit-scrollbar{display:none}.topbar{padding:13px 19px 16px;background:white;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:9px;font-weight:850;font-size:19px;letter-spacing:-.5px}.logo{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,#2e75ff,#1748bb);color:white;display:grid;place-items:center;font-size:18px}.avatar{width:35px;height:35px;border-radius:50%;background:#e9efff;color:#275bd1;display:grid;place-items:center;font-weight:800}
-.page{display:none;padding:16px 17px 24px}.page.active{display:block}.greeting{font-size:13px;color:var(--muted)}h2{font-size:23px;line-height:1.2;margin:4px 0 15px;letter-spacing:-.6px}.hero{background:linear-gradient(120deg,#173b80,#2868e7);color:white;border-radius:20px;padding:19px;position:relative;overflow:hidden;min-height:157px}.hero:after{content:"🔧";position:absolute;right:14px;bottom:4px;font-size:74px;opacity:.2;transform:rotate(-18deg)}.hero small{opacity:.8;font-weight:700}.hero h3{font-size:21px;line-height:1.18;margin:8px 0;width:70%}.hero p{font-size:11px;opacity:.85;margin:0 0 13px}.whitebtn{border:0;border-radius:10px;padding:10px 13px;background:white;color:#2054bd;font-weight:800;font-size:11px;cursor:pointer}
-.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:20px 0 11px}.sectionhead strong{font-size:15px}.link{font-size:11px;color:var(--blue);font-weight:800;cursor:pointer}.services{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.service{border:1px solid var(--line);background:white;border-radius:15px;padding:12px 4px;text-align:center;cursor:pointer;transition:.2s}.service:hover,.service:focus{border-color:#7fa5ff;transform:translateY(-2px)}.service .emoji{font-size:24px}.service span{display:block;font-size:10px;font-weight:750;margin-top:7px}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:10px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.jobicon{width:43px;height:43px;border-radius:13px;background:#edf3ff;display:grid;place-items:center;font-size:22px}.muted{color:var(--muted);font-size:11px}.jobtitle{font-weight:800;font-size:13px}.pill{background:#eaf8f2;color:#16855f;padding:5px 8px;border-radius:20px;font-size:9px;font-weight:800}.quick{display:flex;gap:8px;margin-top:12px}.quick button,.outline{border:1px solid #dce5f4;background:#fff;color:#315a9e;border-radius:10px;padding:9px 11px;font-size:10px;font-weight:800;cursor:pointer}.primary{border:0;background:var(--blue);color:white;border-radius:12px;padding:12px 15px;font-weight:800;font-size:12px;cursor:pointer;width:100%;box-shadow:0 7px 16px #2864e82b}.primary:active,.whitebtn:active{transform:scale(.98)}
-.field{margin:12px 0}.field label{display:block;font-size:11px;font-weight:800;margin-bottom:6px;color:#43516a}.field input,.field select,.field textarea{width:100%;border:1px solid #e0e7f1;background:white;border-radius:11px;padding:12px;font:inherit;font-size:12px;outline:none}.field textarea{height:76px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:#6e98ff}.choicegrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.choice{background:white;border:1px solid var(--line);border-radius:12px;padding:12px;text-align:left;font-size:11px;font-weight:800;cursor:pointer}.choice.selected{border-color:var(--blue);background:#f0f5ff;color:#2054bd}.nav{position:absolute;bottom:0;left:0;right:0;height:68px;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;padding-bottom:4px}.nav button{border:0;background:none;color:#9aa5b5;font-size:9px;font-weight:750;display:flex;flex-direction:column;gap:4px;align-items:center;cursor:pointer}.nav button b{font-size:19px;font-weight:500}.nav button.active{color:var(--blue)}.toast{position:absolute;bottom:82px;left:18px;right:18px;background:#142943;color:white;border-radius:12px;padding:12px 14px;font-size:11px;box-shadow:0 8px 25px #0c203d35;display:none;z-index:8}.toast.show{display:block;animation:fade 2.6s forwards}@keyframes fade{0%,75%{opacity:1}100%{opacity:0}}
-.back{border:0;background:none;color:var(--blue);font-weight:800;font-size:12px;padding:0;margin-bottom:12px;cursor:pointer}.price{font-size:12px;font-weight:850;color:#1b56c8}.empty{text-align:center;padding:30px 10px;color:var(--muted);font-size:12px}.profileline{padding:14px 0;border-bottom:1px solid var(--line);font-size:12px;display:flex;justify-content:space-between}.profileline b{color:#26364d}
-@media(max-width:800px){body{padding:10px}.stage{justify-content:center}.intro{display:none}.phone{width:min(390px,100%);height:min(790px,94vh);min-height:620px}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#17243a" />
+  <title>FixMate | Mobile App Prototype</title>
+  <style>
+    :root {
+      --navy: #17243a;
+      --blue: #2459d8;
+      --blue-dark: #204cae;
+      --ink: #101d33;
+      --muted: #7b8ba7;
+      --line: #e1e8f2;
+      --page: #edf1f7;
+      --surface: #ffffff;
+      --soft: #f5f8fc;
+    }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: var(--page);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    button { font: inherit; }
+    .phone {
+      position: relative;
+      width: min(390px, calc(100vw - 28px));
+      height: min(780px, calc(100dvh - 28px));
+      min-height: 620px;
+      overflow: hidden;
+      border: 8px solid var(--navy);
+      border-radius: 43px;
+      background: var(--surface);
+      box-shadow: 0 18px 48px rgba(22, 37, 62, .16), 0 3px 8px rgba(22,37,62,.08);
+      display: flex;
+      flex-direction: column;
+    }
+    .status-bar {
+      height: 38px;
+      flex: 0 0 38px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 23px 0 24px;
+      background: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: -.2px;
+    }
+    .notch {
+      position: absolute;
+      z-index: 5;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 116px;
+      height: 22px;
+      background: var(--navy);
+      border-radius: 0 0 17px 17px;
+    }
+    .status-icons { display: flex; align-items: center; gap: 5px; }
+    .signal { display: inline-flex; gap: 2px; align-items: end; height: 10px; }
+    .signal i { display: block; width: 3px; background: var(--ink); border-radius: 2px; }
+    .signal i:nth-child(1) { height: 4px; }
+    .signal i:nth-child(2) { height: 6px; }
+    .signal i:nth-child(3) { height: 8px; }
+    .signal i:nth-child(4) { height: 10px; }
+    .battery { width: 17px; height: 8px; border: 1.5px solid var(--ink); border-radius: 2px; position: relative; }
+    .battery::before { content: ""; position: absolute; right: -3px; top: 1.5px; height: 3px; width: 2px; background: var(--ink); border-radius: 0 2px 2px 0; }
+    .battery::after { content: ""; position: absolute; inset: 1px; width: 72%; background: var(--ink); border-radius: 1px; }
+    .app-header {
+      height: 71px;
+      flex: 0 0 71px;
+      padding: 0 19px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      border-bottom: 1px solid #f0f3f8;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 850; letter-spacing: -.7px; }
+    .brand-mark {
+      width: 35px; height: 35px; display: grid; place-items: center;
+      color: white; background: linear-gradient(145deg, #2e6cf0, #174cc7);
+      border-radius: 11px;
+    }
+    .brand-mark svg { width: 19px; height: 19px; }
+    .avatar { width: 35px; height: 35px; border-radius: 50%; display: grid; place-items: center; background: #eaf0ff; color: #2459d8; font-size: 14px; font-weight: 800; }
+    .screen {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      background: var(--soft);
+      padding: 17px 18px 16px;
+      scrollbar-width: none;
+    }
+    .screen::-webkit-scrollbar { display: none; }
+    .greeting { color: #71819c; font-size: 13px; margin: 0 0 5px; }
+    h1 { margin: 0; max-width: 285px; font-size: 23px; line-height: 1.16; letter-spacing: -.85px; font-weight: 850; }
+    .hero {
+      position: relative;
+      min-height: 187px;
+      margin-top: 15px;
+      padding: 22px 19px 18px;
+      overflow: hidden;
+      color: white;
+      border-radius: 21px;
+      background: linear-gradient(118deg, #204ba9 0%, #2865e9 100%);
+    }
+    .hero-kicker { margin: 0 0 10px; color: #dce7ff; font-size: 13px; font-weight: 800; letter-spacing: -.1px; }
+    .hero h2 { position: relative; z-index: 1; max-width: 245px; margin: 0 0 8px; font-size: 20px; line-height: 1.2; letter-spacing: -.5px; }
+    .hero-copy { position: relative; z-index: 1; margin: 0 0 12px; color: #edf3ff; font-size: 11px; }
+    .primary-btn { position: relative; z-index: 2; border: 0; border-radius: 10px; background: white; color: #174dbd; padding: 10px 14px; font-size: 11px; font-weight: 850; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,.08); }
+    .hero-tool { position: absolute; right: 20px; bottom: 2px; width: 82px; height: 112px; opacity: .22; transform: rotate(-18deg); }
+    .section-head { display: flex; justify-content: space-between; align-items: center; margin: 21px 0 11px; }
+    .section-head h3 { margin: 0; font-size: 14px; font-weight: 850; letter-spacing: -.2px; }
+    .text-btn { border: 0; padding: 3px 0; background: transparent; color: #1454db; font-size: 11px; font-weight: 800; cursor: pointer; }
+    .service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; }
+    .service {
+      min-width: 0; height: 77px; border: 1px solid var(--line); border-radius: 15px;
+      background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+      cursor: pointer; transition: transform .15s, border-color .15s, background .15s;
+    }
+    .service:active { transform: scale(.97); }
+    .service:hover, .service:focus-visible { border-color: #8eafff; background: #fafdff; outline: none; }
+    .service .emoji { font-size: 25px; line-height: 1; filter: saturate(1.1); }
+    .service span:last-child { font-size: 10px; font-weight: 750; }
+    .activity-card { border: 1px solid var(--line); border-radius: 17px; background: white; padding: 14px 14px 13px; }
+    .activity-top { display: flex; align-items: center; gap: 10px; }
+    .activity-icon { flex: 0 0 43px; width: 43px; height: 43px; border-radius: 13px; background: #eaf1ff; display: grid; place-items: center; color: #1555d8; }
+    .activity-icon svg { width: 25px; height: 25px; }
+    .activity-info { min-width: 0; flex: 1; }
+    .activity-info strong { display: block; font-size: 13px; line-height: 1.2; letter-spacing: -.2px; }
+    .activity-info small { display: block; margin-top: 3px; color: #8290a8; font-size: 10px; white-space: nowrap; }
+    .status { align-self: center; flex: 0 0 auto; border-radius: 20px; padding: 5px 8px; background: #e7f9f1; color: #13835b; font-size: 9px; font-weight: 800; }
+    .activity-actions { display: flex; gap: 8px; margin-top: 12px; }
+    .outline-btn { border: 1px solid #d7e2f5; border-radius: 10px; padding: 9px 12px; background: white; color: #174dbd; font-size: 10px; font-weight: 800; cursor: pointer; }
+    .bottom-nav { flex: 0 0 66px; height: 66px; border-top: 1px solid #e5ebf4; background: white; display: grid; grid-template-columns: repeat(4, 1fr); padding: 7px 8px 5px; }
+    .nav-item { border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #8190aa; font-size: 9px; cursor: pointer; }
+    .nav-item svg { width: 17px; height: 17px; stroke: currentColor; }
+    .nav-item.active { color: #1655e5; }
+    .toast { position: absolute; z-index: 10; left: 50%; bottom: 76px; transform: translate(-50%, 12px); opacity: 0; pointer-events: none; width: max-content; max-width: calc(100% - 32px); padding: 10px 14px; border-radius: 12px; background: #17243a; color: #fff; font-size: 11px; font-weight: 650; box-shadow: 0 6px 20px #17243a35; transition: .2s ease; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    @media (max-width: 420px) {
+      body { padding: 0; background: #fff; }
+      .phone { width: 100vw; height: 100dvh; min-height: 590px; border-width: 0; border-radius: 0; box-shadow: none; }
+      .notch { border-radius: 0 0 15px 15px; }
+    }
+    @media (max-height: 700px) and (min-width: 421px) {
+      .phone { height: calc(100dvh - 20px); min-height: 0; }
+      .screen { padding-top: 12px; }
+      .hero { min-height: 165px; margin-top: 11px; padding-top: 17px; }
+      .section-head { margin-top: 15px; }
+    }
+  </style>
 </head>
 <body>
-<div class="stage">
- <div class="intro">
-  <div class="eyebrow">Interactive app concept</div>
-  <h1>Home repairs, made simple.</h1>
-  <p>A mobile-first handyman service experience where customers can explore maintenance services, request a quote, schedule a visit, and keep track of every job.</p>
-  <div class="feature"><span class="dot">✓</span> Clickable service categories and booking flow</div>
-  <div class="feature"><span class="dot">✓</span> Service requests, job tracking and customer profile</div>
-  <div class="feature"><span class="dot">✓</span> Designed as a phone-screen app prototype</div>
-  <p style="font-size:12px;margin-top:28px">Concept name: <b>FixMate</b> · Demo content and sample requests</p>
- </div>
- <div class="phone">
-  <div class="notch"></div><div class="status"><span>9:41</span><span>●●●  ▰</span></div>
-  <div class="app">
-   <div class="topbar"><div class="brand"><div class="logo">⌂</div> FixMate</div><div class="avatar">J</div></div>
-   <section class="page active" id="home">
-    <div class="greeting">Good morning, Jose 👋</div><h2>What can we fix<br>for you today?</h2>
-    <div class="hero"><small>YOUR HOME, IN GOOD HANDS</small><h3>Reliable help is just a tap away.</h3><p>Book trusted help for the jobs around your home.</p><button class="whitebtn" onclick="go('book')">Request a service →</button></div>
-    <div class="sectionhead"><strong>Explore services</strong><span class="link" onclick="go('services')">See all</span></div>
-    <div class="services">
-     <button class="service" onclick="chooseService('Plumbing')"><div class="emoji">🚿</div><span>Plumbing</span></button>
-     <button class="service" onclick="chooseService('Electrical')"><div class="emoji">💡</div><span>Electrical</span></button>
-     <button class="service" onclick="chooseService('Painting')"><div class="emoji">🖌️</div><span>Painting</span></button>
-     <button class="service" onclick="chooseService('Repairs')"><div class="emoji">🛠️</div><span>Repairs</span></button>
+  <main class="phone" aria-label="FixMate mobile application preview">
+    <div class="notch" aria-hidden="true"></div>
+    <div class="status-bar">
+      <span>9:41</span>
+      <span class="status-icons" aria-hidden="true"><span>•••</span><span class="signal"><i></i><i></i><i></i><i></i></span><span class="battery"></span></span>
     </div>
-    <div class="sectionhead"><strong>Recent activity</strong><span class="link" onclick="go('jobs')">View all</span></div>
-    <div class="card"><div class="row"><div class="row" style="justify-content:flex-start"><div class="jobicon">🚰</div><div><div class="jobtitle">Kitchen faucet repair</div><div class="muted">Request #FM-1024 · Nov 10</div></div></div><span class="pill">In progress</span></div><div class="quick"><button onclick="go('jobs')">Track request</button><button onclick="toast('Your service details are ready to view.')">Details</button></div></div>
-   </section>
-   <section class="page" id="services">
-    <button class="back" onclick="go('home')">← Back</button><h2>Our services</h2><p class="muted">Choose the type of help you need. You can add details in the next step.</p>
-    <div class="card" onclick="chooseService('Plumbing')" style="cursor:pointer"><div class="row"><div class="row" style="justify-content:flex-start"><div class="jobicon">🚿</div><div><div class="jobtitle">Plumbing</div><div class="muted">Leaks, faucets, drains and fixtures</div></div></div><span>›</span></div></div>
-    <div class="card" onclick="chooseService('Electrical')" style="cursor:pointer"><div class="row"><div class="row" style="justify-content:flex-start"><div class="jobicon">💡</div><div><div class="jobtitle">Electrical</div><div class="muted">Lighting, outlets and small fixes</div></div></div><span>›</span></div></div>
-    <div class="card" onclick="chooseService('Painting')" style="cursor:pointer"><div class="row"><div class="row" style="justify-content:flex-start"><div class="jobicon">🖌️</div><div><div class="jobtitle">Painting</div><div class="muted">Touch-ups, rooms and surfaces</div></div></div><span>›</span></div></div>
-    <div class="card" onclick="chooseService('Repairs')" style="cursor:pointer"><div class="row"><div class="row" style="justify-content:flex-start"><div class="jobicon">🛠️</div><div><div class="jobtitle">General repairs</div><div class="muted">Doors, shelves, drywall and more</div></div></div><span>›</span></div></div>
-    <div class="card" onclick="chooseService('Home maintenance')" style="cursor:pointer"><div class="row"><div class="row" style="justify-content:flex-start"><div class="jobicon">🏠</div><div><div class="jobtitle">Home maintenance</div><div class="muted">Routine upkeep and inspections</div></div></div><span>›</span></div></div>
-    <button class="primary" onclick="go('book')">Request a service</button>
-   </section>
-   <section class="page" id="book">
-    <button class="back" onclick="go('services')">← Services</button><h2>Request a service</h2><p class="muted">Tell us a little about the job. We'll follow up to confirm the details.</p>
-    <div class="field"><label>Service type</label><select id="serviceType"><option>Plumbing</option><option>Electrical</option><option>Painting</option><option>General repairs</option><option>Home maintenance</option><option>Other</option></select></div>
-    <div class="field"><label>What needs attention?</label><textarea id="details" placeholder="Describe the issue or work you need..."></textarea></div>
-    <div class="field"><label>Preferred date</label><input id="date" type="date"></div>
-    <div class="field"><label>Service address</label><input id="address" placeholder="Street address, city, ZIP"></div>
-    <div class="field"><label>How should we contact you?</label><input id="contact" placeholder="Phone number or email"></div>
-    <button class="primary" onclick="submitRequest()">Send service request</button>
-    <p class="muted" style="text-align:center;margin-top:10px">Demo only — no information is sent.</p>
-   </section>
-   <section class="page" id="jobs">
-    <h2>My requests</h2><p class="muted">Keep an eye on your service requests and updates.</p>
-    <div class="card"><div class="row"><div class="row" style="justify-content:flex-start"><div class="jobicon">🚰</div><div><div class="jobtitle">Kitchen faucet repair</div><div class="muted">FM-1024 · Nov 10, 2026</div></div></div><span class="pill">In progress</span></div><div style="margin:15px 0 5px;height:5px;border-radius:8px;background:#edf1f7"><div style="width:65%;height:5px;border-radius:8px;background:#2864e8"></div></div><div class="row muted"><span>Request received</span><span>Technician assigned</span></div><div class="quick"><button onclick="toast('A technician update will appear here.')">View updates</button><button onclick="toast('Support: hello@fixmate.demo')">Get help</button></div></div>
-    <div id="newJobs"></div>
-    <div class="card"><div class="row"><strong style="font-size:12px">Need another job done?</strong><span>🧰</span></div><p class="muted">Send a new request whenever you need a hand.</p><button class="primary" onclick="go('book')">Book a service</button></div>
-   </section>
-   <section class="page" id="profile">
-    <h2>My profile</h2><div class="card"><div class="row"><div class="row" style="justify-content:flex-start"><div class="avatar" style="width:48px;height:48px;font-size:18px">J</div><div><div class="jobtitle" style="font-size:15px">Jose Herrera</div><div class="muted">Customer account</div></div></div><span>✎</span></div></div>
-    <div class="card"><div class="profileline"><span>Personal information</span><b>›</b></div><div class="profileline"><span>Saved addresses</span><b>›</b></div><div class="profileline"><span>Notifications</span><b>›</b></div><div class="profileline"><span>Help & support</span><b>›</b></div><div class="profileline"><span>Privacy & terms</span><b>›</b></div></div>
-    <button class="primary" onclick="toast('You are already viewing the demo account.')">Account settings</button>
-   </section>
-  </div>
-  <div class="toast" id="toast"></div>
-  <nav class="nav">
-   <button class="active" data-page="home" onclick="go('home')"><b>⌂</b>Home</button>
-   <button data-page="services" onclick="go('services')"><b>▦</b>Services</button>
-   <button data-page="jobs" onclick="go('jobs')"><b>▤</b>My jobs</button>
-   <button data-page="profile" onclick="go('profile')"><b>☺</b>Profile</button>
-  </nav>
- </div>
-</div>
-<script>
-function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));document.querySelector('.app').scrollTo({top:0,behavior:'smooth'});}
-function chooseService(s){document.getElementById('serviceType').value=s==='Repairs'?'General repairs':s;go('book');}
-function toast(msg){let t=document.getElementById('toast');t.textContent=msg;t.classList.remove('show');void t.offsetWidth;t.classList.add('show');}
-function submitRequest(){let s=document.getElementById('serviceType').value,d=document.getElementById('details').value.trim(),a=document.getElementById('address').value.trim(),c=document.getElementById('contact').value.trim();if(!d||!a||!c){toast('Please add the job details, address and contact information.');return;}let card=document.createElement('div');card.className='card';card.innerHTML='<div class="row"><div class="row" style="justify-content:flex-start"><div class="jobicon">🧰</div><div><div class="jobtitle"></div><div class="muted">New demo request · Just now</div></div></div><span class="pill">Received</span></div>';card.querySelector('.jobtitle').textContent=s;document.getElementById('newJobs').prepend(card);document.getElementById('details').value='';toast('Your demo request has been added to My requests.');go('jobs');}
-</script>
-</body></html>
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4.5 11.2 12 4.8l7.5 6.4v7.1a1 1 0 0 1-1 1h-5v-5.1h-3v5.1h-5a1 1 0 0 1-1-1v-7.1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </span>
+        <span>FixMate</span>
+      </div>
+      <div class="avatar" aria-label="Jose's profile">J</div>
+    </header>
+
+    <section class="screen">
+      <p class="greeting">Good morning, Jose 👋</p>
+      <h1>What can we fix<br />for you today?</h1>
+
+      <section class="hero" aria-label="Book a home service">
+        <p class="hero-kicker">YOUR HOME, IN GOOD HANDS</p>
+        <h2>Reliable help is just a tap away.</h2>
+        <p class="hero-copy">Book trusted help for the jobs around your home.</p>
+        <button class="primary-btn" data-message="Let's get your service request started.">Request a service →</button>
+        <svg class="hero-tool" viewBox="0 0 100 130" fill="none" aria-hidden="true">
+          <path d="M70 8c-12-4-25 3-29 15-2 7 0 14 4 19L12 93a10 10 0 0 0 15 13l33-51c7 1 14-2 19-8 7-9 6-22-2-30l-13 17-12-7L70 8Z" stroke="#071f62" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="m17 99 8 5" stroke="#071f62" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+      </section>
+
+      <div class="section-head">
+        <h3>Explore services</h3>
+        <button class="text-btn" data-message="Showing all available home services.">See all</button>
+      </div>
+      <div class="service-grid" aria-label="Popular services">
+        <button class="service" data-message="Plumbing services selected."><span class="emoji">🚿</span><span>Plumbing</span></button>
+        <button class="service" data-message="Electrical services selected."><span class="emoji">💡</span><span>Electrical</span></button>
+        <button class="service" data-message="Painting services selected."><span class="emoji">🖌️</span><span>Painting</span></button>
+        <button class="service" data-message="Home repairs selected."><span class="emoji">🛠️</span><span>Repairs</span></button>
+      </div>
+
+      <div class="section-head">
+        <h3>Recent activity</h3>
+        <button class="text-btn" data-message="Opening your recent activity.">View all</button>
+      </div>
+      <article class="activity-card">
+        <div class="activity-top">
+          <div class="activity-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 4.5h14v15H5z" fill="#1555d8"/><path d="M9 8h6M12 8v4m0 0-2-2m2 2 2-2M8 16h8" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 3h10" stroke="#1555d8" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="activity-info">
+            <strong>Kitchen faucet repair</strong>
+            <small>Request #FM-1024 · Nov 10</small>
+          </div>
+          <span class="status">In progress</span>
+        </div>
+        <div class="activity-actions">
+          <button class="outline-btn" data-message="Your faucet repair is currently in progress.">Track request</button>
+          <button class="outline-btn" data-message="Request FM-1024 · Kitchen faucet repair.">Details</button>
+        </div>
+      </article>
+    </section>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button class="nav-item active" data-tab="Home" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="m5 10 7-6 7 6v9H5z"/><path d="M10 19v-6h4v6"/></svg><span>Home</span></button>
+      <button class="nav-item" data-tab="Services"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><rect x="14" y="14" width="6" height="6"/></svg><span>Services</span></button>
+      <button class="nav-item" data-tab="My jobs"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h6"/></svg><span>My jobs</span></button>
+      <button class="nav-item" data-tab="Profile"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="10" r="2.5"/><path d="M7.5 17c1-2 2.5-3 4.5-3s3.5 1 4.5 3"/></svg><span>Profile</span></button>
+    </nav>
+    <div class="toast" role="status" aria-live="polite"></div>
+  </main>
+  <script>
+    const toast = document.querySelector('.toast');
+    let toastTimer;
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+    document.querySelectorAll('[data-message]').forEach(button => {
+      button.addEventListener('click', () => showToast(button.dataset.message));
+    });
+    document.querySelectorAll('.nav-item').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.nav-item').forEach(item => {
+          item.classList.remove('active');
+          item.removeAttribute('aria-current');
+        });
+        button.classList.add('active');
+        button.setAttribute('aria-current', 'page');
+        const tab = button.dataset.tab;
+        showToast(tab === 'Home' ? 'You are on the home screen.' : `${tab} screen preview selected.`);
+      });
+    });
+  </script>
+</body>
+</html>
